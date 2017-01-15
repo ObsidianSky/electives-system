@@ -2,7 +2,7 @@
 
     <ul class="lang_switcher" >
         <c:forEach items="${locales}" var="locale">
-            <li  class="lang lang-${locale.value}"><a href="app?${pageContext.request.queryString.subSequence(0, pageContext.request.queryString.length() - 2)}${locale.value}">${locale.key}</a></li>
+            <li  class="lang lang-${locale.value}"><a href="app?${query}&lang=${locale.value}">${locale.key}</a></li>
         </c:forEach>
     </ul>
 

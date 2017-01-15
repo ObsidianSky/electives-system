@@ -6,10 +6,7 @@ import com.epamtraining.resource.LocaleManager;
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;
-import javax.servlet.http.HttpSessionAttributeListener;
-import javax.servlet.http.HttpSessionBindingEvent;
-import javax.servlet.http.HttpSessionEvent;
-import javax.servlet.http.HttpSessionListener;
+import javax.servlet.http.*;
 import java.util.Locale;
 
 public class ApplicationListener implements ServletContextListener,
@@ -75,8 +72,13 @@ public class ApplicationListener implements ServletContextListener,
 
     @Override
     public void requestInitialized(ServletRequestEvent servletRequestEvent) {
-        ServletRequest request = servletRequestEvent.getServletRequest();
-        Locale locale = localeManager.resolveLocale(request);
-        request.setAttribute("locale", locale);
+        ServletRequest req = servletRequestEvent.getServletRequest();
+        Locale locale = localeManager.resolveLocale(req);
+        req.setAttribute("locale", locale);
+        HttpServletRequest request = (HttpServletRequest) req;
+        if (request.getQueryString() != null) {
+            String query = request.getQueryString().replaceAll("&lang...", "");
+            request.setAttribute("query", query);
+        }
     }
 }

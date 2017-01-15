@@ -6,7 +6,7 @@
 
 <fmt:setLocale value="${locale}"/>
 <fmt:setBundle basename="message"/>
-<c:set var="user" scope="page" value="${auth:user(pageContext.request)}"/>
+<c:set var="user" scope="page" value="${auth:account(pageContext.request)}"/>
 
 <html>
 <head>
