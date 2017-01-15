@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="elective@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.0">
+    <root id="1"/>
+    <schema id="2" parent="1" name="elective">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="mysql"/>
+    <schema id="5" parent="1" name="performance_schema"/>
+    <schema id="6" parent="1" name="sakila"/>
+    <schema id="7" parent="1" name="sys"/>
+    <schema id="8" parent="1" name="taskfour"/>
+    <schema id="9" parent="1" name="world"/>
+    <table id="10" parent="2" name="account">
+      <Comment>Account table</Comment>
+    </table>
+    <table id="11" parent="2" name="course">
+      <Comment>Courses table</Comment>
+    </table>
+    <table id="12" parent="2" name="course-student">
+      <Comment>Course-student table (many-to-many)</Comment>
+    </table>
+    <table id="13" parent="2" name="elective">
+      <Comment>Eletives table</Comment>
+    </table>
+    <table id="14" parent="2" name="rating">
+      <Comment>Rating table</Comment>
+    </table>
+    <table id="15" parent="2" name="status">
+      <Comment>Course status</Comment>
+    </table>
+    <table id="16" parent="2" name="user_type">
+      <Comment>User types.</Comment>
+    </table>
+    <column id="17" parent="10" name="id">
+      <Position>1</Position>
+      <Comment>Account id</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="18" parent="10" name="name">
+      <Position>2</Position>
+      <Comment>Account name</Comment>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="19" parent="10" name="login">
+      <Position>3</Position>
+      <Comment>Account login</Comment>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="20" parent="10" name="password">
+      <Position>4</Position>
+      <DataType>varchar(64)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="21" parent="10" name="user_type_id">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="22" parent="10" name="idx_account">
+      <ColNames>user_type_id</ColNames>
+    </index>
+    <key id="23" parent="10" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="24" parent="10" name="fk_account">
+      <ColNames>user_type_id</ColNames>
+      <RefSchemaName>elective</RefSchemaName>
+      <RefTableName>user_type</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnUpdate>no-action</OnUpdate>
+      <OnDelete>no-action</OnDelete>
+    </foreign-key>
+    <column id="25" parent="11" name="id">
+      <Position>1</Position>
+      <Comment>Course id</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="26" parent="11" name="name">
+      <Position>2</Position>
+      <Comment>Course name</Comment>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="27" parent="11" name="description">
+      <Position>3</Position>
+      <DataType>varchar(200)|0</DataType>
+    </column>
+    <column id="28" parent="11" name="status">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="29" parent="11" name="teacher">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="30" parent="11" name="idx_course">
+      <ColNames>status</ColNames>
+    </index>
+    <index id="31" parent="11" name="idx_course_0">
+      <ColNames>teacher</ColNames>
+    </index>
+    <key id="32" parent="11" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="33" parent="11" name="fk_course">
+      <ColNames>status</ColNames>
+      <RefSchemaName>elective</RefSchemaName>
+      <RefTableName>status</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnUpdate>no-action</OnUpdate>
+      <OnDelete>no-action</OnDelete>
+    </foreign-key>
+    <foreign-key id="34" parent="11" name="fk_course_0">
+      <ColNames>teacher</ColNames>
+      <RefSchemaName>elective</RefSchemaName>
+      <RefTableName>account</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnUpdate>no-action</OnUpdate>
+      <OnDelete>no-action</OnDelete>
+    </foreign-key>
+    <column id="35" parent="12" name="student">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="36" parent="12" name="course">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="37" parent="12" name="fk_course-student">
+      <ColNames>student</ColNames>
+    </index>
+    <index id="38" parent="12" name="fk_course-student_0">
+      <ColNames>course</ColNames>
+    </index>
+    <foreign-key id="39" parent="12" name="fk_course-student">
+      <ColNames>student</ColNames>
+      <RefSchemaName>elective</RefSchemaName>
+      <RefTableName>account</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnUpdate>no-action</OnUpdate>
+      <OnDelete>no-action</OnDelete>
+    </foreign-key>
+    <foreign-key id="40" parent="12" name="fk_course-student_0">
+      <ColNames>course</ColNames>
+      <RefSchemaName>elective</RefSchemaName>
+      <RefTableName>course</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnUpdate>no-action</OnUpdate>
+      <OnDelete>no-action</OnDelete>
+    </foreign-key>
+    <column id="41" parent="13" name="id">
+      <Position>1</Position>
+      <Comment>Elective id</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="42" parent="13" name="name">
+      <Position>2</Position>
+      <Comment>Elective name</Comment>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="43" parent="13" name="courses">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="44" parent="13" name="idx_elective">
+      <ColNames>courses</ColNames>
+    </index>
+    <key id="45" parent="13" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="46" parent="13" name="fk_elective">
+      <ColNames>courses</ColNames>
+      <RefSchemaName>elective</RefSchemaName>
+      <RefTableName>course</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnUpdate>no-action</OnUpdate>
+      <OnDelete>no-action</OnDelete>
+    </foreign-key>
+    <column id="47" parent="14" name="rating">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="48" parent="14" name="student">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="49" parent="14" name="course">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="50" parent="14" name="idx_rating">
+      <ColNames>student</ColNames>
+    </index>
+    <index id="51" parent="14" name="idx_rating_0">
+      <ColNames>course</ColNames>
+    </index>
+    <foreign-key id="52" parent="14" name="fk_rating">
+      <ColNames>student</ColNames>
+      <RefSchemaName>elective</RefSchemaName>
+      <RefTableName>account</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnUpdate>no-action</OnUpdate>
+      <OnDelete>no-action</OnDelete>
+    </foreign-key>
+    <foreign-key id="53" parent="14" name="fk_rating_0">
+      <ColNames>course</ColNames>
+      <RefSchemaName>elective</RefSchemaName>
+      <RefTableName>course</RefTableName>
+      <RefColNames>id</RefColNames>
+      <OnUpdate>no-action</OnUpdate>
+      <OnDelete>no-action</OnDelete>
+    </foreign-key>
+    <column id="54" parent="15" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="55" parent="15" name="course_status">
+      <Position>2</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="56" parent="15" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="57" parent="16" name="id">
+      <Position>1</Position>
+      <Comment>User id</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="58" parent="16" name="user_type">
+      <Position>2</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="59" parent="16" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>
