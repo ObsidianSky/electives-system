@@ -10,15 +10,15 @@
 <html>
 <head>
     <title><fmt:message key="archive.title"/></title>
-    <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/style.css"/>
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/vendor/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/style.css"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
 
 <%@ include file="../WEB-INF/jspf/header.jspf"%>
 
-<div class="content" id="courses">
+<main class="container" id="courses">
     <c:forEach var="course" items="${archivedcourses}">
         <div class="courses-view">
             <h3>${course.name}</h3>
@@ -39,7 +39,7 @@
             </c:if>
         </div>
     </c:forEach>
-</div>
+</main>
 
 <%@ include file="../WEB-INF/jspf/footer.jspf"%>
 
